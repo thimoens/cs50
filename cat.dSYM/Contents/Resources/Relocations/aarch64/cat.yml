@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/thijsmoens/Library/CloudStorage/Dropbox/2. Areas/Development/cs50/cat'
+relocations:     []
+...
