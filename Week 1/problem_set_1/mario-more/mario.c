@@ -46,6 +46,12 @@ while(heightPiramids <= 1 || heightPiramids => 8); */
 int main()
 {
 
+    // Create variables for spaces, hashes and gap
+    int spaces = " ";
+    int leftHash = "#";
+    int rightHash = "#";
+    int gap = "  ";
+
     // Ask user for number for how tall the piramids should be
     int heightPiramids = get_int("How high should the pyramids be? Give me a number between 1 and 8: ");
 
@@ -55,7 +61,7 @@ int main()
         // Build the pyramid
         for (int i = 1; i <= heightPiramids; i++)
         {
-            printf("#");
+            printf("%s%s%s%s%s%s", spaces, leftHash, gap, rightHash, gap, leftHash);
         }
     }
     else
