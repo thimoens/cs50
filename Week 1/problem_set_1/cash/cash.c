@@ -20,36 +20,107 @@ Created by Thijs Moens on 13/06/2025.
 #include <stdio.h>
 #include <cs50.h>
 
+// Function declaration
+int calculate_quarters(int cents);
+int calculate_dimes(int cents);
+int calculate_nickles(int cents);
+int calculate_pennies(int cents);
+
+
 // Main function
 int main()
 {
     // Declare variable for user input
-    int changeOwed;
-    int numberOfCoins = 0;
+    int cents;
 
     // Check if the number is valid (above 0)
     do
     {
         // Ask the user for change owed
-        changeOwed = get_int("Change owed: ");
+        cents = get_int("Change owed: ");
     }
-    while(changeOwed <= 0);
+    while(cents < 0);
 
-    // Variables for coins
-    int quarters = 25;
-    int dimes = 10;
-    int nickels = 5;
-    int pennies = 1;
 
-    while(changeOwed % quarters != 0)
-    {
-        changeOwed -= quarters;
-        numberOfCoins++;
-        printf("%d\n", numberOfCoins);
-    }
+    // Calculate how many quarters you should give customer
+    int quarters = calculate_quarters(cents);
 
-    // printf("%d", numberOfCoins);
+    // Subtract the value of those quarters from cents
+    cents = cents - (quarters * 25);
 
+    // Calculate how many dimes you should give customer
+    int dimes = calculate_dimes(cents);
+
+    // Subtract the value of those dimes from remaining cents
+    cents = cents - (dimes * 10);
+    
+    // Calculate how many nickels you should give customer
+    int nickels = calculate_nickles(cents);
+
+    // Subtract the value of those nickels from remaining cents
+    cents = cents - (nickels * 5);
+
+    // Calculate how many pennies you should give customer
+    int pennies = calculate_pennies(cents);
+
+    // Subtract the value of those pennies from remaining cents
+    cents = cents - (pennies * 1);
+
+
+    // Sum the number of quarters, dimes, nickels, and pennies used
+    int sumOfAllCoins = quarters + dimes + nickels + pennies;
+
+    // Print that sum
+    printf("%d\n", sumOfAllCoins);
 
     return 0;
+}
+
+
+// Calculate how many quarters you should give customer
+int calculate_quarters(int cents)
+{
+    int quarters = 0;
+    while (cents >= 25)
+    {
+        quarters++;
+        cents = cents - 25;
+    }
+    return quarters;
+}
+
+// Calculate how many dimes you should give customer
+int calculate_dimes(int cents)
+{
+    int dimes = 0;
+    while (cents >= 10)
+    {
+        dimes++;
+        cents = cents - 10;
+    }
+    return dimes;
+}
+
+// Calculate how many nickles you should give customer
+int calculate_nickles(int cents)
+{
+    int nickles = 0;
+    while (cents >= 5)
+    {
+        nickles++;
+        cents = cents - 5;
+    }
+    return nickles;
+}
+
+// Calculate how many pennies you should give customer
+int calculate_pennies(int cents)
+{
+    int pennies = 0;
+    while (cents >= 1)
+    {
+        pennies++;
+        cents = cents - 1;
+    }
+    return pennies;
 }
