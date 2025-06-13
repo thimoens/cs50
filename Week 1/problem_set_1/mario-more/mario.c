@@ -32,7 +32,7 @@ int main()
         // Ask user for number for how tall the piramids should be
         heightPiramids = get_int("How high should the pyramids be? Give me a number between 1 and 8: ");
     }
-    while(heightPiramids < 0 || heightPiramids > 9);
+    while(heightPiramids <= 0 || heightPiramids > 9);
 
     // Create variables for spaces, hashes and gap
     char spaces = ' ';
@@ -60,7 +60,7 @@ int main()
             }
 
             // Print the gap
-            printf("%c %c", spaces, spaces);
+            printf("%c%c", spaces, spaces);
 
             // Add the right hashes
             for (int l = 0; l < i; l++)
