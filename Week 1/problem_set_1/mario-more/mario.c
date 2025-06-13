@@ -75,6 +75,9 @@ int main()
         // Build the pyramid
         for (int i = 1; i <= heightPiramids; i++)
         {
+            
+
+
             printf("%c %c %c %c %c\n", spaces, leftHash, gap, gap, rightHash);
         }
     }
