@@ -1,3 +1,7 @@
+/*
+	Created by Thijs Moens on 13 june 2025
+*/
+
 #include <stdio.h>
 
 int main(void)
