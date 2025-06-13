@@ -25,6 +25,7 @@ int main()
 {
     // Declare variable for user input
     int changeOwed;
+    int numberOfCoins = 0;
 
     // Check if the number is valid (above 0)
     do
@@ -40,11 +41,15 @@ int main()
     int nickels = 5;
     int pennies = 1;
 
-    while(changeOwed % quarters)
+    while(changeOwed % quarters != 0)
     {
         changeOwed -= quarters;
-        printf("%d", changeOwed);
+        numberOfCoins++;
+        printf("%d\n", numberOfCoins);
     }
+
+    // printf("%d", numberOfCoins);
+
 
     return 0;
 }
