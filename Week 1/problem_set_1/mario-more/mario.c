@@ -1,5 +1,5 @@
 /*
-Created by Thijs Moens on 09/06/2025.
+Created by Thijs Moens on 13/06/2025.
 
    Problem set:
    In a file called mario.c in a folder called mario-more, implement a program in C that recreates that pyramid, using hashes (#) for bricks, as in the below:
@@ -14,16 +14,7 @@ Created by Thijs Moens on 09/06/2025.
 
 // Include libaries
 #include <stdio.h>
-// #include <cs50.h>
-
-/*
-do
-{
-    // Ask user for number for how tall the piramids should be
-    int heightPiramids = get_int("How high should the pyramids be? Give me a number between 1 and 8: ");
-}
-while(heightPiramids <= 1 || heightPiramids => 8); */
-
+#include <cs50.h>
 
 
 
@@ -31,43 +22,23 @@ while(heightPiramids <= 1 || heightPiramids => 8); */
 int main()
 {
 
-//    int heightPiramids = get_int("How high should the pyramids be? Give me a number between 1 and 8: ");
+    // Declare variable for user input
+    int heightPiramids;
 
-
-    // Print spaces
-//    int spaces = heightPiramids - 1;
-
-    // Print left hashes
-    // for (int i = 1; i <= heightPiramids; i++)
-    // Print gap
-    // int gap = " " + " ";
-    // Print right hashes
-
-    // VOORBEELD 3
-    // spaces, spaces, leftHash, gap, rightHash,
-    // spaces, leftHash, leftHash, gap, rightHash, rightHash
-    // leftHash, leftHash, leftHash, gap, rightHash, rightHash, rightHash
-
-
+    // Check if the number is valid
+    // Loop until the user gives a number between 1 and 8
+    do
+    {
+        // Ask user for number for how tall the piramids should be
+        heightPiramids = get_int("How high should the pyramids be? Give me a number between 1 and 8: ");
+    }
+    while(heightPiramids < 0 || heightPiramids > 9);
 
     // Create variables for spaces, hashes and gap
     char spaces = ' ';
     char leftHash = '#';
     char rightHash = '#';
-    char gap = ' ';
-
-    // Create a variable for the height of the pyramids
-    int heightPiramids;
-    
-    // Ask user for number for how tall the piramids should be
-    printf("How high should the pyramids be? Give me a number between 1 and 8: ");
-
-    // Get and save the number the user types
-    scanf("%d", &heightPiramids);
-
-    // Just for debug reasons
-    printf("You typed: %d\n", heightPiramids);
-
+    // string gap = spaces + spaces;
 
     // Check if the number is valid
     if (heightPiramids > 0 && heightPiramids < 9)
@@ -75,17 +46,32 @@ int main()
         // Build the pyramid
         for (int i = 1; i <= heightPiramids; i++)
         {
-            
 
+            // Remove the spaces
+            for (int j = heightPiramids - i; j > 0; j--)
+            {
+                printf("%c", spaces);
+            }
 
-            printf("%c %c %c %c %c\n", spaces, leftHash, gap, gap, rightHash);
+            // Add the left hashes
+            for (int k = 0; k < i; k++)
+            {
+                printf("%c", leftHash);
+            }
+
+            // Print the gap
+            printf("%c %c", spaces, spaces);
+
+            // Add the right hashes
+            for (int l = 0; l < i; l++)
+            {
+                printf("%c", rightHash);
+            }
+
+            // Print the line break
+            printf("\n");
         }
     }
-    else
-    {
-        // Ask the question again
-        printf("Not a correct number\n");
-    }
-
+  
     return 0;
 }
