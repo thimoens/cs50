@@ -15,7 +15,6 @@ int countLetters(string text);
 int countWords(string text);
 int countSentences(string text);
 
-
 int main()
 {
 	// Ask the user for a text
@@ -86,7 +85,12 @@ int countSentences(string text)
 
     for (int i = 0, length = strlen(text); i < length; i++)
     {
-    	if (ispunct(text[i]))
+    	// Don't count punctiation in a word
+    	if ( (text[i] == '"') || (text[i] == ',') || (text[i] == '\'') || (text[i] == ':') || (text[i] == ';') || (text[i] == '-') )
+    	{
+    		// Do nothing
+    	}
+    	else if (ispunct(text[i]))
     	{
     		count += 1;
     	}
