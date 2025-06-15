@@ -10,7 +10,7 @@
 #include <string.h>
 
 // Function decleration
-// int computeColemanLiauIndex(string text);
+int computeColemanLiauIndex(int letters, int words, int sentences);
 int countLetters(string text);
 int countWords(string text);
 int countSentences(string text);
@@ -26,29 +26,25 @@ int main()
 	int words = countWords(text);
 	int sentences = countSentences(text);
 
-	// TESTEN
-	printf("i\n", letters);
-
 	// Implement Coleman-Liau index
-	// colemanLiauIndex(text);
+	int indexNumber = computeColemanLiauIndex(letters, words, sentences);
 
 	// Check grade by Coleman-Liau index
-
-	// Print grade to user
-
+	if (indexNumber < 1)
+	{
+		printf("Before Grade 1\n");
+	}
+	else if (indexNumber >= 16)
+	{
+		printf("Grade 16+\n");
+	}
+	else
+	{
+		printf("Grade %i\n", indexNumber);
+	}
 
 	return 0;
 }
-
-// Function to implement Coleman-Liau index
-// int computeColemanLiauIndex(string text)
-// {
-// 	// FORMULA index = 0.0588 * L - 0.296 * S - 15.8
-
-// 	// L is the average number of letters per 100 words in the text
-
-// 	// S is the average number of sentences per 100 words in the text
-// }
 
 int countLetters(string text)
 {
@@ -70,6 +66,16 @@ int countWords(string text)
 {
     int count = 0;
 
+    for (int i = 0, length = strlen(text); i < length; i++)
+    {
+    	if (isblank(text[i]))
+    	{
+    		count += 1;
+    	}
+    }
+
+    // Count one extra for the last missing space as a word
+    count += 1;
 
     return count;
 }
@@ -78,6 +84,40 @@ int countSentences(string text)
 {
     int count = 0;
 
+    for (int i = 0, length = strlen(text); i < length; i++)
+    {
+    	if (ispunct(text[i]))
+    	{
+    		count += 1;
+    	}
+    }
 
     return count;
+}
+
+
+// Function to implement Coleman-Liau index
+int computeColemanLiauIndex(int letters, int words, int sentences)
+{
+	/* Formula for the index is
+
+		index = 0.0588 * L - 0.296 * S - 15.8
+
+	*/
+
+	// L is the average number of letters per 100 words in the text
+	float L = ((float)letters / (float)words) * (float)100;
+
+	// S is the average number of sentences per 100 words in the text
+	float S = ((float)sentences / (float)words * (float)100);
+	// printf("%f\n", S);
+
+	// Calculate formula
+	float index = (0.0588 * (float)L - 0.296 * (float)S - 15.8);
+
+	// Round the number
+	int roundIndex = (int) round(index);
+
+	return roundIndex;
+
 }
