@@ -52,7 +52,7 @@ int calculateTotalScore(string word)
 	int score = 0;
 
  	// Compute score for each character
-    for (int i = 0, lenght = strlen(word); i < lenght; i++)
+    for (int i = 0, length = strlen(word); i < length; i++)
     {
         if (isupper(word[i]))
         {
