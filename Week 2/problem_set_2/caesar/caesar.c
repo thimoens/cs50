@@ -14,11 +14,11 @@
 #include <stdio.h>
 #include <string.h>
 
-int main(int argc, char argv[])
+int main(int argc, char **argv)
 {
 
 	// User should provide the key number in the command line
-	printf("%c", argv[]);
+	printf("%i\n", key);
 
 	// The key must be an positive integer
 
